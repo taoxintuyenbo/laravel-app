@@ -1,0 +1,38 @@
+name: Laravel Deploy to Azure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.4'
+        extensions: mbstring, xml, bcmath, curl, mysql
+        coverage: none
+
+    - name: Install Composer dependencies
+      run: composer install --no-dev --optimize-autoloader
+
+    - name: Laravel cache
+      run: |
+        php artisan config:cache
+        php artisan route:cache
+        php artisan view:cache
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: duydinhwebapp  # replace if needed
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: .
+
