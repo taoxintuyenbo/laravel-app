@@ -65,4 +65,4 @@ jobs:
           app-name: 'duywebapp'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6F26BF4F979144FC80F5DF86F1F927C5 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E045DB23ADAA430FA622B93DF225CB2B }}
