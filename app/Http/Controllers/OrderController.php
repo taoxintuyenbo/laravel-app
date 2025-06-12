@@ -311,7 +311,7 @@ class OrderController extends Controller
         // Tạo orderId duy nhất: nối id đơn hàng với timestamp
         $uniqueOrderId = $order->id . '_' . time();
     
-        $redirectUrl = "http://localhost:3000/thanh-toan-thanh-cong"; 
+        $redirectUrl = "https://ambitious-grass-0e16f9200.6.azurestaticapps.net/thanh-toan-thanh-cong"; 
         $ipnUrl = "http://yourbackend.com/api/momo/ipn"; // URL backend nhận callback IPN (cần thay thành URL thật)
     
         $extraData = "";
@@ -427,7 +427,7 @@ class OrderController extends Controller
         $tmnCode = "K9C7AVE4"; // Mã TMN code VNPAY thật của bạn
         $secretKey = "688IM7YB5KQDKIUWN0XJ53F00Y6R2RUG"; // Chuỗi bí mật thật
         $vnpUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $returnUrl = "http://localhost:3000/thanh-toan-thanh-cong"; // URL nhận kết quả thanh toán
+        $returnUrl = "https://ambitious-grass-0e16f9200.6.azurestaticapps.net/thanh-toan-thanh-cong"; // URL nhận kết quả thanh toán
     
         $locale = "vn"; // Viết thường
         $currCode = "VND";
