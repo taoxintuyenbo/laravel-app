@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         $users = User::where('status', '!=', 0)
             ->orderBy('created_at', 'DESC')
-            ->select("id", "name", "fullname", "email", "phone", "gender", "thumbnail", "roles", "created_by", "updated_by", "created_at", "updated_at", "status")
+            ->select("id", "name", "fullname", "email", "phone", "gender", "thumbnail", "roles", "created_by","login_method", "updated_by", "created_at", "updated_at", "status")
             ->get();
 
         foreach ($users as $user) {
@@ -43,7 +43,7 @@ class UserController extends Controller
     {
         $users = User::where('status', '=', 0)
             ->orderBy('created_at', 'DESC')
-            ->select("id", "name", "fullname", "email", "phone", "gender", "thumbnail", "roles", "created_by", "updated_by", "created_at", "updated_at", "status")
+            ->select("id", "name", "fullname", "email", "phone", "gender", "thumbnail", "roles", "created_by", "login_method","updated_by", "created_at", "updated_at", "status")
             ->get();
 
         foreach ($users as $user) {
