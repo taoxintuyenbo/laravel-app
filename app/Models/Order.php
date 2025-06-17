@@ -8,7 +8,7 @@ use App\Models\OrderDetail;
 class Order extends Model
 {
     use HasFactory;
-    protected $table = 'order';
+    protected $table = 'orders';
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);

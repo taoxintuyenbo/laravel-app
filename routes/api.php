@@ -52,7 +52,7 @@ Route::get('post_page/{slug}', [PostController::class, 'post_page']);
 // UC10: Sản phẩm (product_all/mã danh mục/giới hạn)
 // Route::get('product_all/{categoryid}/{limit}', [ProductController::class, 'product_all']);
 Route::get('product_all/{category_id?}/{brand_id?}/{price_min?}/{price_max?}', [ProductController::class, 'product_all']);
-
+Route::get('/products/search', [ProductController::class, 'search']);
 //menu
 Route::get('/mainMenu', [MenuController::class, 'mainMenu']);
 Route::get('/footerMenu', [MenuController::class, 'footerMenu']);

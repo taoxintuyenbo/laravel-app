@@ -738,4 +738,31 @@ class ProductController extends Controller
             'products' => $products
         ]);
     }
+
+    public function search(Request $request)
+{
+    $query = $request->query('query', '');
+    $perPage = 6;
+    $lowerQuery = mb_strtolower($query, 'UTF-8');
+
+    $products = Product::with('images')
+        ->where('status', 1)
+        ->where(function($q) use ($lowerQuery) {
+            $q->whereRaw('LOWER(name) LIKE ?', ['%' . $lowerQuery . '%'])
+              ->orWhereRaw('LOWER(slug) LIKE ?', ['%' . $lowerQuery . '%'])
+              ->orWhereRaw('LOWER(description) LIKE ?', ['%' . $lowerQuery . '%']);
+        })
+        ->orderBy('created_at', 'DESC')
+        ->paginate($perPage);
+
+    foreach ($products as $product) {
+        foreach ($product->images as $image) {
+            $image->thumbnail = asset('images/product/' . $image->thumbnail);
+        }
+    }
+
+    return response()->json([
+        'products' => $products,
+    ]);
+}
 }
